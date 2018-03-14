@@ -17,7 +17,7 @@ object WordCount {
     conf.setMaster("local")
     val sc = new SparkContext(conf)
     val lines = sc.textFile("D:\\IdeaProjects\\portals-analyse\\README.md", 1)
-    val word = lines.flatMap(line => line.split("，||。")).map(w => (w.trim, 1)).reduceByKey(_ + _).sortBy(x => x._2)
+    val word = lines.flatMap(line => line.split("，|。")).map(w => (w.trim, 1)).reduceByKey(_ + _).sortBy(x => x._2)
     word.foreach(println(_))
 
   }
